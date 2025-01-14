@@ -1,0 +1,26 @@
+<% include('../layouts/header.ejs') %>
+
+<link rel="stylesheet" href="/admin-styles/new-user-style.css">
+
+<div class="form-container">
+    <h1>Add New User</h1>
+
+    <form action="" method="post">
+        <input type="text" name="name" placeholder="Enter Name" required>
+        <br><br>
+        <input type="email" name="email" placeholder="Enter Email" required>
+        <br><br>
+        <input type="text" name="mno" placeholder="Enter Mobile Number" required>
+        <br><br>
+        <input type="submit" value="Add User">
+    </form>
+
+    <% if (typeof message !== 'undefined') { %>
+        <p class="error-message"><%= message %></p>
+    <% } %>
+
+    <a href="/admin/dashboard" class="back-link">Go Back</a>
+</div>
+
+<% include('../layouts/footer.ejs') %>
+

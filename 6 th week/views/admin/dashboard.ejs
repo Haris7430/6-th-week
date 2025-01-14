@@ -1,0 +1,160 @@
+<!-- <% include('../layouts/header.ejs') %> 
+
+<link rel="stylesheet" href="/admin-styles/dashboard-style.css">
+
+
+<div class="dashboard-container">
+    <h1 class="dashboard-title">Dashboard</h1>
+
+    <div class="actions">
+        <a href="/admin/new-user" class="btn btn-add">Add New User</a>
+    </div>
+
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Verify</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%
+            if(users.length) {
+                users.forEach(user => {
+            %>
+            <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.mobile %></td>
+                <td>
+                    <%
+                    if(user.is_varified == 0) {
+                    %>
+                    <span class="not-verified">Not Verified</span>
+                    <%
+                    } else {
+                    %>
+                    <span class="verified">Verified</span>
+                    <%
+                    }
+                    %> 
+                </td>
+                <td>
+                    <a href="/admin/edit-user?id=<%= user._id %>" class="btn btn-edit">Edit</a>
+                    <a href="/admin/delete-user?id=<%= user._id %>" class="btn btn-delete">Delete</a>
+                </td>
+            </tr>
+            <%
+                });
+            } else {
+            %>
+            <tr>
+                <td colspan="5" class="no-users">Users Not Found</td>
+            </tr>
+            <%
+            }
+            %>
+        </tbody>
+    </table>
+    
+    <div class="back-home">
+        <a href="/admin/home" class="btn btn-back">Go to Home</a>
+    </div>
+</div>
+
+<% include('../layouts/footer.ejs') %> -->
+
+
+<% include('../layouts/header.ejs') %> 
+
+<link rel="stylesheet" href="/admin-styles/dashboard-style.css">
+
+<div class="dashboard-container">
+    <h1 class="dashboard-title">Dashboard</h1>
+
+    <div class="actions">
+        <a href="/admin/new-user" class="btn btn-add">Add New User</a>
+        <br>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search users...">
+       
+    </div>
+    <br>
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Verify</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%
+            if(users.length) {
+                users.forEach(user => {
+            %>
+            <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.mobile %></td>
+                <td>
+                    <%
+                    if(user.is_varified == 0) {
+                    %>
+                    <span class="not-verified">Not Verified</span>
+                    <%
+                    } else {
+                    %>
+                    <span class="verified">Verified</span>
+                    <%
+                    }
+                    %> 
+                </td>
+                <td>
+                    <a href="/admin/edit-user?id=<%= user._id %>" class="btn btn-edit">Edit</a>
+                    <a href="/admin/delete-user?id=<%= user._id %>" class="btn btn-delete">Delete</a>
+                </td>
+            </tr>
+            <%
+                });
+            } else {
+            %>
+            <tr>
+                <td colspan="5" class="no-users">Users Not Found</td>
+            </tr>
+            <%
+            }
+            %>
+        </tbody>
+    </table>
+    
+    <div class="back-home">
+        <a href="/admin/home" class="btn btn-back">Go to Home</a>
+    </div>
+</div>
+
+<script>
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+        var searchValue = this.value.toLowerCase();
+        var tableRows = document.querySelectorAll('.user-table tbody tr');
+
+        tableRows.forEach(function(row) {
+            var name = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
+            var email = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+            var mobile = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+            
+            if (name.includes(searchValue) || email.includes(searchValue) || mobile.includes(searchValue)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<% include('../layouts/footer.ejs') %>
+

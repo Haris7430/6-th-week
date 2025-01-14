@@ -1,0 +1,84 @@
+<!-- <% include('../layouts/header.ejs') %>
+
+<link rel="stylesheet" href="/users-styles/login-style.css">
+
+
+<div class="login-container">
+    <h1>Login</h1>
+
+    <% if(typeof message !== 'undefined'){ %>
+        <h4 class="message"><%= message %></h4>
+    <% } %>
+
+
+    <form action="/login" method="post" class="form-container">
+        <input type="email" name="email" required placeholder="Enter email">
+        <br><br>
+        <input type="password" name="password" required placeholder="Enter password">
+        <br><br>
+        <input type="submit" value="Login">
+    </form>
+</div>
+
+
+
+<% include('../layouts/footer.ejs') %> -->
+
+
+
+
+<% include('../layouts/header.ejs') %>
+
+<link rel="stylesheet" href="/users-styles/login-style.css">
+
+<div class="login-container">
+    <h1>Login</h1>
+
+    <% if(typeof message !== 'undefined'){ %>
+        <h4 class="message"><%= message %></h4>
+    <% } %>
+
+    <form action="/login" method="post" class="form-container" id="loginForm">
+        <input type="email" name="email" id="email" required placeholder="Enter email">
+        <br><br>
+        <input type="password" name="password" id="password" required placeholder="Enter password">
+        <br><br>
+        <input type="submit" value="Login">
+    </form>
+
+    <p id="errMsg" class="error-message"></p>
+</div>
+
+<% include('../layouts/footer.ejs') %>
+
+<script>
+    const form = document.getElementById('loginForm');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        validateLogin();
+    });
+
+    const isValidEmail = email => {
+        const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        return re.test(String(email).toLowerCase());
+    };
+
+    const validateLogin = () => {
+        const emailValue = email.value.trim();
+        const passwordValue = password.value.trim();
+        const errMsg = document.getElementById('errMsg');
+
+        if (!emailValue) {
+            errMsg.innerText = 'Please enter your email';
+        } else if (!isValidEmail(emailValue)) {
+            errMsg.innerText = 'Please enter a valid email';
+        } else if (!passwordValue) {
+            errMsg.innerText = 'Please enter your password';
+        } else {
+            form.submit(); 
+        }
+    }
+</script>

@@ -1,0 +1,54 @@
+<% include('../layouts/header.ejs') %>
+<link rel="stylesheet" href="/admin-styles/login-style.css">
+
+
+
+<div class="login-container">
+    <h1 class="login-title">Admin Login</h1>
+
+    <% if (typeof message !== 'undefined') { %>
+        <h3 class="error-message"><%= message %></h3>
+    <% } %>
+
+    <form action="" method="post" id="loginForm" class="login-form"  >
+        <input type="email" name="email" placeholder="Enter Email" id="email" class="input-field"  required>
+        <input type="password" name="password" placeholder="Enter Password" id="password" class="input-field"  required>
+        <input type="submit" value="Login" class="login-button">
+    </form>
+    <p id="errMsg" class="error-message"></p>
+</div>
+
+<% include('../layouts/footer.ejs') %>
+
+
+<script>
+    const form = document.getElementById('loginForm');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        validateLogin();
+    });
+
+    const isValidEmail = email => {
+        const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        return re.test(String(email).toLowerCase());
+    };
+
+    const validateLogin = () => {
+        const emailValue = email.value.trim();
+        const passwordValue = password.value.trim();
+        const errMsg = document.getElementById('errMsg');
+
+        if (!emailValue) {
+            errMsg.innerText = 'Please enter your email';
+        } else if (!isValidEmail(emailValue)) {
+            errMsg.innerText = 'Please enter a valid email';
+        } else if (!passwordValue) {
+            errMsg.innerText = 'Please enter your password';
+        } else {
+            form.submit(); 
+        } 
+    }
+</script> 

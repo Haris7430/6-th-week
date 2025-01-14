@@ -1,0 +1,78 @@
+<% include('../layouts/header.ejs') %>
+
+<link rel="stylesheet" href="/users-styles/registration-styles.css">
+
+
+<div class="registration-container">
+    <h1>User Registration</h1>
+
+    <p id="errMsg" style="color:red"></p>
+
+    <form id="regForm" action="/register" method="post">
+        <input type="text" id="name" name="name" placeholder="Enter Name" required>
+        <br><br>
+        <input type="email" id="email" name="email" placeholder="Enter Email" required>
+        <br><br>
+        <input type="text" name="mno" id="mobile" placeholder="Enter Mobile Number" required>
+        <br><br>
+        <input type="password" id="pass" name="password" placeholder="Enter Password" required>
+        <br><br>
+        <input type="submit" value="Register">
+    </form>
+
+    <% if (typeof message !== 'undefined') { %>
+        <p class="success-message"><%= message %></p>
+    <% } %>
+</div>
+
+
+<script>
+    const form = document.getElementById('regForm');
+    const name = document.getElementById('name');
+    const mobile = document.getElementById('mobile');
+    const email = document.getElementById('email');
+    const pass = document.getElementById('pass');
+    // const errMsg = document.getElementById('errMsg');
+  
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      validateRegister();
+    });
+  
+    const isValidEmail = email => {
+              const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+              return re.test(String(email).toLowerCase());
+          }
+     const isValidName = fname => {
+              const regex = /^[a-zA-Z]{2,30}$/;
+              return regex.test(fname); 
+          }
+  
+    const validateRegister = () => {
+      const nameValue = name.value.trim();
+      const mobileValue = mobile.value.trim();
+      const emailValue = email.value.trim();
+      const passValue = pass.value.trim();
+      const errMsg = document.getElementById('errMsg');
+  
+      if (!nameValue) {
+        errMsg.innerText = 'Please enter your name';
+      } else if (!isValidName(nameValue)) {
+        errMsg.innerText = 'Please enter a valid Name';
+      } else if (!mobileValue) {
+        errMsg.innerText = 'Please enter your mobile';
+      } else if (!emailValue) {
+        errMsg.innerText = 'Please enter your email';
+      } else if (!isValidEmail(emailValue)) {
+        errMsg.innerText = 'Please enter a valid email';
+      } else if (!passValue) {
+        errMsg.innerText = 'Please enter your password';
+      } else {
+        // errMsg.innerText = ''; 
+        form.submit(); 
+      }
+    }
+  </script>
+ 
+
+<% include('../layouts/footer.ejs') %>

@@ -1,0 +1,29 @@
+<% include('../layouts/header.ejs') %>
+
+<link rel="stylesheet" href="/admin-styles/home-style.css">
+
+
+<div class="home-container">
+    <h1>Welcome, <%= admin.name %></h1>
+
+    <div class="links">
+        <a href="/admin/dashboard" class="btn btn-dashboard">Dashboard</a>
+    </div>
+
+    <table class="admin-details">
+        <tr>
+            <td>Email</td>
+            <td><%= admin.email %></td>
+        </tr>
+        <tr>
+            <td>Mobile</td>
+            <td><%= admin.mobile %></td>
+        </tr>
+    </table>
+
+    <div class="links">
+        <a href="/admin/logout" class="btn btn-logout">Logout</a>
+    </div>
+</div>
+
+<% include('../layouts/footer.ejs') %>

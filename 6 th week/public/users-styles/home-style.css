@@ -1,0 +1,82 @@
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #00b09b, #96c93d); /* Green to blue gradient */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.user-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.user-info-table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+.user-info-table tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.verified-status {
+    color: green;
+    font-weight: bold;
+}
+
+.unverified-status {
+    color: red;
+    font-weight: bold;
+}
+
+.action-links {
+    margin-top: 20px;
+}
+
+.edit-button,
+.logout-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button {
+    background-color: #3498db;
+}
+
+.edit-button:hover {
+    background-color: #2980b9;
+}
+
+.logout-button {
+    background-color: #e74c3c;
+}
+
+.logout-button:hover {
+    background-color: #c0392b;
+}
