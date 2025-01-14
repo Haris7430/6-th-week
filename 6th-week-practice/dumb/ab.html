@@ -1,0 +1,43 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="home">
+        <button id="mybutton">click</button>
+    </form>
+</body>
+
+
+<div id="parent">
+    <button id="child">Click Me!</button>
+</div>
+
+<script>
+    // document.getElementById('mybutton').addEventListener('click',function(event){
+    //       event.preventDefault(true)
+    //     console.log('hello world')
+    // })
+
+
+
+
+
+    document.getElementById('parent').addEventListener('click', function() {
+        console.log('Parent clicked');
+    });
+
+    document.getElementById('child').addEventListener('click', function(event) {
+        console.log('Child clicked');
+        // Optional: Stop bubbling
+        // event.stopPropagation(); 
+    });
+
+
+</script>
+</html>
